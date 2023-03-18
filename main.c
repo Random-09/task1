@@ -83,6 +83,7 @@ void print_date_difference(Date_t date_1, Date_t date_2) {
     int hours = (int) (total_seconds / SECONDS_IN_AN_HOUR);
     total_seconds -= hours * SECONDS_IN_AN_HOUR;
     int minutes = (int) (total_seconds / SECONDS_IN_A_MINUTE);
+    total_seconds -= minutes * SECONDS_IN_A_MINUTE;
     int seconds = (int) (total_seconds);
     printf("%02d.%02d.%04d %02d:%02d:%02d", days, months, years, hours, minutes, seconds);
 }
@@ -111,4 +112,3 @@ int main(int argc, char *argv[]) {
 }
 
 // TODO
-//calc_dates "DD.MM.YYYY HH:MM:SS" "DD.MM.YYYY HH:MM:SS"
