@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
+#define SECONDS_IN_A_YEAR ((long long)365 * 12 * 30 * 24 * 60 * 60)
+#define SECONDS_IN_A_MONTH ((long )30 * 24 * 60 * 60)
+#define SECONDS_IN_A_DAY (24 * 60 * 60)
+#define SECONDS_IN_AN_HOUR (60 * 60)
+#define SECONDS_IN_A_MINUTE 60
 
 typedef struct Date {
     int days, months, years, hours, minutes, seconds;
@@ -56,9 +60,33 @@ Date_t convert_to_date(const char date_string[]) { // CHECK FOR >24H, >60 MINUTE
 }
 
 
-void print_date_difference(Date_t date_1, Date_t date_2) {
-
+long long date_to_seconds(Date_t date) {
+    long long result = 0;
+    result += date.years * SECONDS_IN_A_YEAR;
+    result += date.months * SECONDS_IN_A_MONTH;
+    result += date.days * SECONDS_IN_A_DAY;
+    result += date.hours * SECONDS_IN_AN_HOUR;
+    result += date.minutes * SECONDS_IN_A_MINUTE;
+    result += date.seconds;
+    return result;
 }
+
+
+void print_date_difference(Date_t date_1, Date_t date_2) {
+    long long total_seconds = llabs(date_to_seconds(date_1) - date_to_seconds(date_2));
+    int years = (int) (total_seconds / SECONDS_IN_A_YEAR);
+    total_seconds -= years * SECONDS_IN_A_YEAR;
+    int months = (int) (total_seconds / SECONDS_IN_A_MONTH);
+    total_seconds -= months * SECONDS_IN_A_MONTH;
+    int days = (int) (total_seconds / SECONDS_IN_A_DAY);
+    total_seconds -= days * SECONDS_IN_A_DAY;
+    int hours = (int) (total_seconds / SECONDS_IN_AN_HOUR);
+    total_seconds -= hours * SECONDS_IN_AN_HOUR;
+    int minutes = (int) (total_seconds / SECONDS_IN_A_MINUTE);
+    int seconds = (int) (total_seconds);
+    printf("%02d.%02d.%04d %02d:%02d:%02d", days, months, years, hours, minutes, seconds);
+}
+//calc_dates "DD.MM.YYYY HH:MM:SS" "DD.MM.YYYY HH:MM:SS"
 
 
 int main(int argc, char *argv[]) {
