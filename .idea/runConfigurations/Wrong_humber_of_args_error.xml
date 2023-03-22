@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Wrong humber of args error" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;01.01.1970 13:37:42&quot; &quot;30.12.1988 23:58:00&quot; &quot;20.11.2005 12:40:38&quot;" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="task1" TARGET_NAME="task1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="task1" RUN_TARGET_NAME="task1">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
