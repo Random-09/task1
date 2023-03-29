@@ -7,12 +7,12 @@
 int check_format(const char date[]) {
     int is_correct = 0;
     if (strlen(date) == 19
-        && (date[2] == 46 && date[5] == 46)     // check for . in DD.MM.YYYY
-        && (date[13] == 58 && date[16] == 58)   // check for : in HH:MM:SSSS
-        && date[10] == 32) {                    // check for space between time and date
-        for (int i = 0; i < 19; i++) {          // check for nums in date & time
+        && (date[2] == '.' && date[5] == '.')
+        && (date[13] == ':' && date[16] == ':')
+        && date[10] == ' ') {
+        for (int i = 0; i < 19; i++) {
             if ((i != 2 && i != 5 && i != 10 && i != 13 && i != 16)
-                && 48 <= date[i] && date[i] <= 57)
+                && '0' <= date[i] && date[i] <= '9')
                 is_correct = 1;
         }
     }
@@ -28,7 +28,7 @@ void slice(const char *string, char *result, int start, int end) {
 }
 
 
-int check_date(Date_t date) { // CHECK FOR NEGATIVE NUMS (ARE THEY NECESSARY?)
+int check_date(Date_t date) {
     if (1 <= date.days && date.days <= 30 && 1 <= date.months && date.months <= 12 && 0 <= date.hours
         && date.hours <= 23 && 0 <= date.minutes && date.minutes <= 59 && 0 <= date.seconds && date.seconds <= 59)
         return 1;
@@ -70,17 +70,20 @@ long long date_to_seconds(Date_t date) {
 
 
 void print_date_difference(Date_t date_1, Date_t date_2) {
-    long long total_seconds = llabs(date_to_seconds(date_1) - date_to_seconds(date_2));
-    int years = (int) (total_seconds / SECONDS_IN_A_YEAR);
-    total_seconds -= years * SECONDS_IN_A_YEAR;
-    int months = (int) (total_seconds / SECONDS_IN_A_MONTH);
-    total_seconds -= months * SECONDS_IN_A_MONTH;
-    int days = (int) (total_seconds / SECONDS_IN_A_DAY);
-    total_seconds -= days * SECONDS_IN_A_DAY;
-    int hours = (int) (total_seconds / SECONDS_IN_AN_HOUR);
-    total_seconds -= hours * SECONDS_IN_AN_HOUR;
-    int minutes = (int) (total_seconds / SECONDS_IN_A_MINUTE);
-    total_seconds -= minutes * SECONDS_IN_A_MINUTE;
-    int seconds = (int) (total_seconds);
-    printf("%02d.%02d.%04d %02d:%02d:%02d", days, months, years, hours, minutes, seconds);
+    long long total_seconds = date_to_seconds(date_2) - date_to_seconds(date_1);
+    if (total_seconds > 0) {
+        int years = (int) (total_seconds / SECONDS_IN_A_YEAR);
+        total_seconds -= years * SECONDS_IN_A_YEAR;
+        int months = (int) (total_seconds / SECONDS_IN_A_MONTH);
+        total_seconds -= months * SECONDS_IN_A_MONTH;
+        int days = (int) (total_seconds / SECONDS_IN_A_DAY);
+        total_seconds -= days * SECONDS_IN_A_DAY;
+        int hours = (int) (total_seconds / SECONDS_IN_AN_HOUR);
+        total_seconds -= hours * SECONDS_IN_AN_HOUR;
+        int minutes = (int) (total_seconds / SECONDS_IN_A_MINUTE);
+        total_seconds -= minutes * SECONDS_IN_A_MINUTE;
+        int seconds = (int) (total_seconds);
+        printf("%02d.%02d.%04d %02d:%02d:%02d", days, months, years, hours, minutes, seconds);
+    } else
+        printf("The first date is later than the other");
 }
