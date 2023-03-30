@@ -1,5 +1,5 @@
-#ifndef TASK1_FUNCTIONS_H
-#define TASK1_FUNCTIONS_H
+#ifndef TASK1_DATETIME_H
+#define TASK1_DATETIME_H
 
 #include <stdio.h>
 #include <stdlib.h>

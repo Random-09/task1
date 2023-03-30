@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "functions.h"
+#include "datetime.h"
 
 
 int check_format(const char date[]) {

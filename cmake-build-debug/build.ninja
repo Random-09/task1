@@ -55,8 +55,8 @@ build CMakeFiles/task1.dir/main.c.obj: C_COMPILER__task1_Debug C$:/Users/kvasa/C
   OBJECT_DIR = CMakeFiles\task1.dir
   OBJECT_FILE_DIR = CMakeFiles\task1.dir
 
-build CMakeFiles/task1.dir/functions.c.obj: C_COMPILER__task1_Debug C$:/Users/kvasa/Cprojects/HW4/task1/functions.c || cmake_object_order_depends_target_task1
-  DEP_FILE = CMakeFiles\task1.dir\functions.c.obj.d
+build CMakeFiles/task1.dir/datetime.c.obj: C_COMPILER__task1_Debug C$:/Users/kvasa/Cprojects/HW4/task1/datetime.c || cmake_object_order_depends_target_task1
+  DEP_FILE = CMakeFiles\task1.dir\datetime.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
   OBJECT_DIR = CMakeFiles\task1.dir
   OBJECT_FILE_DIR = CMakeFiles\task1.dir
@@ -69,7 +69,7 @@ build CMakeFiles/task1.dir/functions.c.obj: C_COMPILER__task1_Debug C$:/Users/kv
 #############################################
 # Link the executable task1.exe
 
-build task1.exe: C_EXECUTABLE_LINKER__task1_Debug CMakeFiles/task1.dir/main.c.obj CMakeFiles/task1.dir/functions.c.obj
+build task1.exe: C_EXECUTABLE_LINKER__task1_Debug CMakeFiles/task1.dir/main.c.obj CMakeFiles/task1.dir/datetime.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\task1.dir

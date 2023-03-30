@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "functions.h"
+#include "datetime.h"
 
 
 int main(int argc, char *argv[]) {
