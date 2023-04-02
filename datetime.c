@@ -1,19 +1,22 @@
 #include "datetime.h"
 
 
-int check_format(const char date[]) {
-    int is_correct = 0;
-    if (strlen(date) == 19
-        && (date[2] == '.' && date[5] == '.')
-        && (date[13] == ':' && date[16] == ':')
-        && date[10] == ' ') {
-        for (int i = 0; i < 19; i++) {
-            if ((i != 2 && i != 5 && i != 10 && i != 13 && i != 16)
-                && '0' <= date[i] && date[i] <= '9')
-                is_correct = 1;
-        }
-    }
-    return is_correct;
+int check_format_and_date(char date[]) { // "DD.MM.YYYY HH:MM:SS" "DD.MM.YYYY HH:MM:SS"
+    char *days = strtok(date, ".");
+    char *months = strtok(NULL, ".");
+    char *years = strtok(NULL, " ");
+    char *hours = strtok(NULL, ":");
+    char *minutes = strtok(NULL, ":");
+    char *seconds = strtok(NULL, ":");
+    if (strcmp(days, "00") != 0 && 1 <= atoi(days) && atoi(days) <= 30 &&           // <---- define everything
+        strcmp(months, "00") != 0 && 1 <= atoi(months) && atoi(months) <= 12 &&
+        strcmp(years, "0000") != 0 && 1 <=!atoi(years) && atoi(years) <= 9999 &&
+        strcmp(hours, "00") != 0 && 1 <= atoi(hours) && atoi(hours) <= 23 &&
+        strcmp(minutes, "00") != 0 && 1 <= atoi(minutes) && atoi(minutes) <= 59 &&
+        strcmp(seconds, "00") != 0 && 1 <= atoi(seconds) && atoi(seconds) <= 59)
+        return 1;
+    else
+        return 0;
 }
 
 
@@ -25,13 +28,13 @@ void slice(const char *string, char *result, int start, int end) {
 }
 
 
-int check_date(Date_t date) {
-    if (1 <= date.days && date.days <= 30 && 1 <= date.months && date.months <= 12 && 0 <= date.hours
-        && date.hours <= 23 && 0 <= date.minutes && date.minutes <= 59 && 0 <= date.seconds && date.seconds <= 59)
-        return 1;
-    else
-        return 0;
-}
+//int check_date(Date_t date) {
+//    if (1 <= date.days && date.days <= 30 && 1 <= date.months && date.months <= 12 && 0 <= date.hours
+//        && date.hours <= 23 && 0 <= date.minutes && date.minutes <= 59 && 0 <= date.seconds && date.seconds <= 59)
+//        return 1;
+//    else
+//        return 0;
+//}
 
 
 Date_t convert_to_date(const char date_string[]) {

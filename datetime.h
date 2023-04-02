@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define SECONDS_IN_A_YEAR 11352960000
 #define SECONDS_IN_A_MONTH 2592000
@@ -15,7 +16,7 @@ typedef struct Date {
     int days, months, years, hours, minutes, seconds;
 } Date_t;
 
-int check_format(const char date[]);
+int check_format(char date[]);
 
 void slice(const char *string, char *result, int start, int end);
 
